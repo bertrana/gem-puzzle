@@ -1,0 +1,21 @@
+.menu {
+  display: flex;
+  justify-content: space-between;
+
+  width: 80vw;
+
+  margin: 20px auto;
+}
+
+.button{
+  padding: 10px;
+
+
+  color: #000;
+  font-size: 18px;
+  line-height: 20px;
+  text-align: center;
+
+  background-color: burlywood;
+  border-radius: 5px;
+}
