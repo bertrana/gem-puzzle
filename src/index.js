@@ -1,8 +1,5 @@
-import createMenu from "./Menu";
-import Game from "./Game";
+import Ui from "./ui/ui";
 
-document.body.appendChild(createMenu());
-
-let game = new Game();
-document.body.appendChild(game.puzzleBoard);
-console.log(game.puzzleBoard);
+let ui = new Ui();
+document.body.appendChild(ui);
+console.log(ui.canvas);
