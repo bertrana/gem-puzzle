@@ -1,5 +1,3 @@
-import Ui from "./ui/ui";
+import createUI from "./ui/index"
 
-let ui = new Ui();
-document.body.appendChild(ui);
-console.log(ui.canvas);
+createUI();

@@ -1,24 +1,73 @@
 import './style.scss';
+import UI from './ui';
+import Button from './button';
 
-function createButton(button_type) {
-  let button = document.createElement('button');
-  button.classList.add(`button`);
-  button.classList.add(`button__${button_type}`);
+export default function createUI() {
+  let ui = new UI();
 
-  let buttonText = document.createTextNode(button_type);
-  button.appendChild(buttonText);
-  return button;
+  ui.addElement(ui.view == "table" ? createHeaderMenu() : createBurgerMenu());
+  ui.addElement(createStats());
+  ui.addElement(createGameBoard());
 }
 
+function createHeaderMenu() {
+  let menu = document.createElement('header');
+  menu.classList.add('menu');
 
-function createMenu() {
-  let menu = document.createElement('section');
-
-  menu.classList.add("menu");
-  menu.appendChild(createButton("start"));
-  menu.appendChild(createButton("result"));
+  let buttonNewGame = new Button("New Game", () => {
+    //remove current game and create new
+    console.log("buttonNewGame");
+  });
   
+  let buttonSaveGame = new Button("Save", () => {
+    //save the game
+    console.log("buttonSaveGame");
+  })
+
+  let buttonShowRating = new Button("Rating", () => {
+    //show popup with ratings
+    console.log("buttonShowRating");
+  })
+
+  let buttonTimerControl = new Button("Start", () => {
+    // toggle to "stop" when game starts
+    console.log("buttonTimerControl");
+  })
+
+  menu.append(buttonNewGame.element);
+  menu.append(buttonSaveGame.element);
+  menu.append(buttonShowRating.element);
+  menu.append(buttonTimerControl.element);
+
   return menu;
 }
 
-export default createMenu;
+function createStats() {
+  let stats = document.createElement('div');
+
+  stats.classList.add("stats");
+  
+  let timer = document.createElement('div');
+  timer.classList.add('timer');
+  stats.appendChild(timer);
+
+  let steps = document.createElement('span');
+  let stepsText = document.createTextNode("Steps:");
+  steps.appendChild(stepsText);
+  steps.classList.add('steps');
+  stats.appendChild(steps);
+
+  return stats;
+}
+
+function createGameBoard() {
+  let canvas = document.createElement('canvas');
+  canvas.width = 300;
+
+  let ctx = canvas.getContext('2d');
+
+  ctx.fillStyle = 'rgb(30, 80, 10)';
+  ctx.fillRect(10, 10, 100, 50);
+
+  return canvas;
+}
