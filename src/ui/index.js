@@ -1,11 +1,12 @@
 import './style.scss';
 import UI from './ui';
 import Button from './button';
+import createGameBoard from '../game';
 
 export default function createUI() {
   let ui = new UI();
 
-  // maybe delete method?
+  // maybe delete method "addElement"?
   ui.addElement(ui.view == "table" ? createHeaderMenu() : createBurgerMenu());
   ui.addElement(createStats());
   ui.addElement(createGameBoard());
@@ -60,23 +61,4 @@ function createStats() {
   stats.appendChild(steps);
 
   return stats;
-}
-
-function createGameBoard() {
-  let container = document.createElement('div');
-  container.classList.add('container');
-
-  let canvas = document.createElement('canvas');
-  canvas.width = 300; // i need to calculate size for adaptive version
-  canvas.height = 300;
-
-  container.style.width = canvas.width + "px";
-  container.append(canvas);
-
-  let ctx = canvas.getContext('2d');
-
-  ctx.fillStyle = 'rgb(230, 210, 220)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  return container;
 }
