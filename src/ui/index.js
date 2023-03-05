@@ -5,6 +5,7 @@ import Button from './button';
 export default function createUI() {
   let ui = new UI();
 
+  // maybe delete method?
   ui.addElement(ui.view == "table" ? createHeaderMenu() : createBurgerMenu());
   ui.addElement(createStats());
   ui.addElement(createGameBoard());
@@ -31,6 +32,7 @@ function createHeaderMenu() {
 
   let buttonTimerControl = new Button("Start", () => {
     // toggle to "stop" when game starts
+    // or do "stop" button inactive before game start?3
     console.log("buttonTimerControl");
   })
 
@@ -61,13 +63,20 @@ function createStats() {
 }
 
 function createGameBoard() {
+  let container = document.createElement('div');
+  container.classList.add('container');
+
   let canvas = document.createElement('canvas');
-  canvas.width = 300;
+  canvas.width = 300; // i need to calculate size for adaptive version
+  canvas.height = 300;
+
+  container.style.width = canvas.width + "px";
+  container.append(canvas);
 
   let ctx = canvas.getContext('2d');
 
-  ctx.fillStyle = 'rgb(30, 80, 10)';
-  ctx.fillRect(10, 10, 100, 50);
+  ctx.fillStyle = 'rgb(230, 210, 220)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  return canvas;
+  return container;
 }
