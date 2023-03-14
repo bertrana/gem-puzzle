@@ -2,14 +2,29 @@ import { generateArrayOfNumbers } from "../utils/utils";
 
 export default class Game {
   constructor() {
-    
+    if (this.isLastGameExist()) {
+      this.data = this.loadLastGame(); //?
+    } else {
+      this.size = 3; //global variable?
+      this.data = generateArrayOfNumbers(this.size);
+    }
   }
 
-  startNewGame() {
-    let size = this.checkGameSize();
-    let newArray = generateArrayOfNumbers(size);
-  
-  
+  renderGame(ctx, canvasWidth) {
+    let rectSize = canvasWidth / (this.size + 1);
+    let gap = rectSize / (this.size - 1);
+    let x = 0;
+    let y = 0;
+
+    ctx.fillStyle = "yellow";
+
+    //maybe change array to double size?
+    for (let i = 0; i < this.data.length; i++) {
+      x = Math.floor(i / this.size) * (rectSize + gap);
+      y = (i % this.size) * (rectSize + gap);
+      ctx.fillRect(x, y, rectSize, rectSize);
+
+    }
   }
   
   checkGameSize() {
@@ -25,8 +40,13 @@ export default class Game {
       console.log(radio);
     }
   }
+
+  isLastGameExist() {
+    //check localStorage
+    return false;
+  }
   
   loadLastGame() {
-    this.startNewGame();
+    //need to load game from localStorage
   }
 }

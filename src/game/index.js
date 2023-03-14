@@ -15,8 +15,7 @@ export default function createGameBoard() {
   console.log(container);
 
   let game = new Game();
-
-  game.loadLastGame();
+  game.renderGame(ctx, canvas.width);
 
   return container;
 }
