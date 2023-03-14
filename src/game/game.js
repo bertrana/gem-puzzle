@@ -6,7 +6,7 @@ export default class Game {
   }
 
   startNewGame() {
-    let size = checkGameSize();
+    let size = this.checkGameSize();
     let newArray = generateArrayOfNumbers(size);
   
   
@@ -14,7 +14,11 @@ export default class Game {
   
   checkGameSize() {
     let form = document.forms[0];
-    console.log(form);
+    console.log(document.forms);
+
+    if (!form) {
+      return 3;
+    }
     
     for (let radio of form.elements["size"]) {
       console.log("radio from CheckGameSize");
@@ -23,6 +27,6 @@ export default class Game {
   }
   
   loadLastGame() {
-    startNewGame();
+    this.startNewGame();
   }
 }
