@@ -15,15 +15,16 @@ export default class Game {
     let gap = rectSize / (this.size - 1);
     let x = 0;
     let y = 0;
-
-    ctx.fillStyle = "yellow";
+    ctx.font = rectSize / 2 + "px serif";
 
     //maybe change array to double size?
     for (let i = 0; i < this.data.length; i++) {
-      x = Math.floor(i / this.size) * (rectSize + gap);
-      y = (i % this.size) * (rectSize + gap);
+      x = (i % this.size) * (rectSize + gap);
+      y = Math.floor(i / this.size) * (rectSize + gap);
+      ctx.fillStyle = "yellow";
       ctx.fillRect(x, y, rectSize, rectSize);
-
+      ctx.fillStyle = "black";
+      ctx.fillText("" + i, x + Math.floor(rectSize/3), y + Math.floor(rectSize * 3/4), rectSize); 
     }
   }
   
