@@ -10,21 +10,43 @@ export default class Game {
     }
   }
 
+  handleEvent(evt) {
+    switch (evt.type) {
+      // case "mouseenter":
+      //   this.onHoveredElement(evt);
+      //   break ;
+      // case "mouseleave":
+      //   this.onUnhoveredElement(evt);
+      //   break ;
+      case "mousemove":
+        this.onHoveredElement(evt);
+    }
+  }
+
+  onHoveredElement(evt) {
+    for (let i = 0; i < this.data.length; i++) {
+      if (evt.offsetX < (i % this.size) * (this.rectSize)) {
+        console.log(i);
+      } 
+    }
+  }
+
   renderGame(ctx, canvasWidth) {
-    let rectSize = canvasWidth / (this.size + 1);
-    let gap = rectSize / (this.size - 1);
+    this.rectSize = canvasWidth / (this.size + 1);
+    let gap = this.rectSize / this.size;
     let x = 0;
     let y = 0;
-    ctx.font = rectSize / 2 + "px serif";
+    ctx.font = this.rectSize / 2 + "px serif";
 
     //maybe change array to double size?
     for (let i = 0; i < this.data.length; i++) {
-      x = (i % this.size) * (rectSize + gap);
-      y = Math.floor(i / this.size) * (rectSize + gap);
+      x = (i % this.size) * (this.rectSize + gap) + gap / 2;
+      y = Math.floor(i / this.size) * (this.rectSize + gap) + gap / 2;
       ctx.fillStyle = "yellow";
-      ctx.fillRect(x, y, rectSize, rectSize);
+      ctx.fillRect(x, y, this.rectSize, this.rectSize);
       ctx.fillStyle = "black";
-      ctx.fillText("" + i, x + Math.floor(rectSize/3), y + Math.floor(rectSize * 3/4), rectSize); 
+      ctx.textAlign = "center";
+      ctx.fillText("" + i, x + Math.floor(this.rectSize/3), y + Math.floor(this.rectSize * 3/4), this.rectSize); 
     }
   }
   

@@ -9,13 +9,16 @@ export default function createGameBoard() {
 
   container.style.width = canvas.width + "px";
   container.append(canvas);
-
   container.append(createSizeForm());
-  console.log("container after apppend");
-  console.log(container);
 
   let game = new Game();
   game.renderGame(ctx, canvas.width);
+  //use game.handleEvent()
+  canvas.addEventListener('mousemove', game);
+  canvas.addEventListener('mouseleave', game);
+  canvas.addEventListener('mousedown', game);
+  canvas.addEventListener('mouseup', game);
+  canvas.addEventListener('click', game);
 
   return container;
 }

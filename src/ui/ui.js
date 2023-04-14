@@ -11,7 +11,7 @@ export default class UI { //can I change it to object?
 
   }
 
-  addElement(newElement) {
+  addElement(newElement) { 
     this.element.append(newElement);
   }
 }
